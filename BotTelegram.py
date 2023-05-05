@@ -79,7 +79,7 @@ def get_text_messages(message):
         # os.system('py test_PK.py > Results/PK_logs.txt')
         with open('Results/PK_logs.txt', 'r', -1, 'utf-8') as fi:
             #     # f = fi.read()[262:1031] # более полный отчет о тестировании
-            f = fi.read()[0::]  # отчет о тестировании
+            f = fi.read()[186:751]  # отчет о тестировании
             opt_1 = re.sub(r'\s[.]', '\n', f)
             # opt_2 =  re.sub(r'\D[=]', ' ', opt_1) #редактирование последней строчки
         bot.send_message(message.chat.id, opt_1)  # ответ бота с выводом результата тестирования
