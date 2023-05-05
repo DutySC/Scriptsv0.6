@@ -1,3 +1,5 @@
+from selenium.common import UnexpectedAlertPresentException
+
 import PK.parametrize as prm
 import time
 from BASE_PAGE import BasePage
@@ -35,6 +37,9 @@ class locators_doctors_diary:
     LOCATOR_PLACE_OF_RECEPTION_CHOICE= (By.XPATH, '//span[contains(text(), "АПУ")]')
     LOCATOR_SAVE_SERVICE = (By.XPATH, '//body[1]//table[2]//td[contains(text(), "Сохранить")]')
     LOCATOR_SAVE_SERVICE_NEXT = (By.XPATH, '//div[contains(text(), "Продолжить")]')
+    LOCATOR_OPEN_WINDOW_SAVE_SERVICE_1 = (By.XPATH, '//body[1]/div[8]//tr[7]//img[1]')
+    LOCATOR_OPEN_WINDOW_SAVE_SERVICE_2 = (By.XPATH, '//td[contains(text(), "ОК")]')
+    LOCATOR_OPEN_WINDOW_SAVE_SERVICE_3 = (By.XPATH, '//body[1]/div[8]//div/table[2]//td[contains(text(), "Сохранить")]')
     LOCATOR_PATIENT_RCM = (By.XPATH, f'//body//a[contains(text(), "{prm.name_patient}")]')
     LOCATOR_CANCEL_SERVICE = (By.XPATH, '//td[contains(text(), "Отменить оказание")]')
     LOCATOR_DELETE_PATIENT = (By.XPATH, '//body[1]//div[12]//td[2][contains(text(), "Удалить направление")]')
@@ -101,8 +106,19 @@ class doctors_diary(BasePage):
         self.find_element(locators_doctors_diary.LOCATOR_PLACE_OF_RECEPTION).click()  # место оказания приема
         self.find_element(locators_doctors_diary.LOCATOR_PLACE_OF_RECEPTION_CHOICE).click() # выбор приема
         self.find_element(locators_doctors_diary.LOCATOR_SAVE_SERVICE).click() # сохранение приема
-        self.find_element_pb()  # прогрессбар
-        self.find_element(locators_doctors_diary.LOCATOR_SAVE_SERVICE_NEXT).click() # сохранение визита с характером заболевания "K00.0"
+        try:
+            self.find_element_pb()  # прогрессбар
+            self.find_element(locators_doctors_diary.LOCATOR_SAVE_SERVICE_NEXT).click() # сохранение визита с характером заболевания "K00.0"
+        except UnexpectedAlertPresentException:
+            self.driver.switch_to.alert.accept()  # принятие всплывающего окна
+            self.find_element_pb()  # прогрессбар
+            self.find_element(locators_doctors_diary.LOCATOR_OPEN_WINDOW_SAVE_SERVICE_1).click() # план ДН
+            self.find_element_pb()  # прогрессбар
+            self.find_element(locators_doctors_diary.LOCATOR_OPEN_WINDOW_SAVE_SERVICE_2).click() # план ДН
+            self.find_element_pb()  # прогрессбар
+            self.find_element(locators_doctors_diary.LOCATOR_OPEN_WINDOW_SAVE_SERVICE_3).click() # кнопка "Сохранить"
+            self.find_element_pb()  # прогрессбар
+            self.find_element(locators_doctors_diary.LOCATOR_SAVE_SERVICE_NEXT).click()  # сохранение визита с характером заболевания "K00.0"
         self.find_element_pb()  # прогрессбар
         print('✅ Оказана улслуга') # вывод
 

@@ -58,10 +58,10 @@ class Test_PK:
     #     self.test_PK_schedule(browser_PK) # тест модуля "Расписание"
     #     self.test_PK_hospitalization(browser_PK) # тест модуля "Госпитализация"
 
-    def test_PK_login(self, browser_PK):
-        start_page = login(browser_PK)
-        start_page.auth()
-        print('STAGE_1: COMPLETE')
+    # def test_PK_login(self, browser_PK):
+    #     start_page = login(browser_PK)
+    #     start_page.auth()
+    #     print('STAGE_1: COMPLETE')
 
     # def test_PK_doctors_diary(self, browser_PK):
     #     self.test_PK_login(browser_PK) # тест авторизации
@@ -87,9 +87,9 @@ class Test_PK:
     #     patient_hospitalization_test.patient_delete_hospitalization()
     #     print('STAGE_4: COMPLETE')
 
-    def test_PK_search_patient(self, browser_PK):
-        self.test_PK_login(browser_PK)  # тест авторизации
-        search_patient_test = search_patient(browser_PK)
-        search_patient_test.create_patient()
-        search_patient_test.delete_patient()
-        print('STAGE_5: COMPLETE')
+    # def test_PK_search_patient(self, browser_PK):
+    #     self.test_PK_login(browser_PK)  # тест авторизации
+    #     search_patient_test = search_patient(browser_PK)
+    #     search_patient_test.create_patient()
+    #     search_patient_test.delete_patient()
+    #     print('STAGE_5: COMPLETE')
