@@ -9,4 +9,4 @@ RUN mkdir /app
 COPY . app
 WORKDIR app
 CMD ["python3", "BotTelegram.py"]
-#run -d -p 4444:4444 -p 7900:7900 --shm-size="2g" selenium/standalone-chrome:latest
+#docker run -d -p 4444:4444 -p 7900:7900 --shm-size="2g" selenium/standalone-chrome:latest

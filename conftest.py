@@ -23,7 +23,7 @@ def browser_SNILS():
 
 @pytest.fixture(scope='function')
 def browser_PK():
-    service = Service(executable_path="./chromedriver.exe") # путь до драйвера
+    # service = Service(executable_path="./chromedriver.exe") # путь до драйвера
     chrome_options = ChromeOptions() # объект для опций
     # chrome_options.add_argument('--headless') # фоновый режим
     chrome_options.add_experimental_option('excludeSwitches', ['enable-logging']) # включение экспериментальных функций
