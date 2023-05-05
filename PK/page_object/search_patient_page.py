@@ -2,7 +2,7 @@ import PK.parametrize as prm
 import time
 from BASE_PAGE import BasePage
 from selenium.webdriver.common.by import By
-from conftest import browser_SNILS
+# from conftest import browser_SNILS
 
 class search_patient_locators:
     LOCATOR_SEARCH_PATIENT_1 = (By.XPATH, '//span[contains(text(), "Регистратура")]')
@@ -74,7 +74,7 @@ class search_patient(BasePage):
         self.find_element_pb()  # прогрессбар
         self.find_element(search_patient_locators.LOCATOR_SNILS).click()  # ввод СНИЛС
         search_string_5 = self.find_element(search_patient_locators.LOCATOR_SNILS)  # ввод СНИЛС
-        search_string_5.send_keys(browser_SNILS()) # указывается СНИЛС
+        search_string_5.send_keys(prm.snils) # указывается СНИЛС
         search_string_6 = self.find_element(search_patient_locators.LOCATOR_ENTER_POLIS)  # ввод номера полиса
         search_string_6.send_keys(prm.rand)  # указывается номер полиса
         self.find_element(search_patient_locators.LOCATOR_INSURANCE_COMPANY).click()  # окно для указания страховой компании

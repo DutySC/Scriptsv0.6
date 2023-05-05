@@ -30,8 +30,8 @@ def browser_PK():
     chrome_options.add_argument('--ignore-certificate-errors') # игнорирование проверки сертификата
     chrome_options.add_argument('--ignore-ssl-errors') # игнорирование проверки сертификата
     chrome_options.add_argument('--start-maximized')  # полный экран
-    driver = webdriver.Chrome(service=service, options=chrome_options) # настройка драйвера
-    # driver = webdriver.Remote(command_executor=f'{p_link}', options=chrome_options)  # настройка драйвера
+    # driver = webdriver.Chrome(service=service, options=chrome_options) # настройка драйвера
+    driver = webdriver.Remote(command_executor=f'{p_link}', options=chrome_options)  # настройка драйвера
     link_1 = 'https://192.168.233.171:25443/' # адрес для подключения
     driver.get(link_1) # подключение по указанному адресу
     yield driver # возврат из функции с сохранением состояния ее переменных

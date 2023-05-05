@@ -1,4 +1,4 @@
-from selenium.common import UnexpectedAlertPresentException
+from selenium.common import UnexpectedAlertPresentException, ElementClickInterceptedException
 
 import PK.parametrize as prm
 import time
@@ -58,7 +58,10 @@ class doctors_diary(BasePage):
             print('✅ Формирования окна - Дневник врача: ', round(full_diary, 2), 'сек')
         else:
             print('🅾️ Формирования окна - Дневник врача: ', round(full_diary, 2), 'сек')
-        self.find_element(locators_doctors_diary.LOCATOR_REGISTER_1).click() #кнопка "Запись"
+        try:
+            self.find_element(locators_doctors_diary.LOCATOR_REGISTER_1).click() #кнопка "Запись"
+        except ElementClickInterceptedException:
+            self.find_element(locators_doctors_diary.LOCATOR_REGISTER_1).click()  # кнопка "Запись"
         self.find_element_pb()  # прогрессбар
         self.find_element_pb()  # прогрессбар
         time.sleep(3) # ожидание

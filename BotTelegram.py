@@ -75,11 +75,11 @@ def get_text_messages(message):
 
     elif message.text == 'Тест Приморья':
         bot.send_message(message.chat.id, '⚪️Начата проверка крит. модулей продуктивного стенда - Приморья 🔽')
-        # os.system('pytest -s test_PK.py > Results/PK_logs.txt')  # команда запуска скрипта test_PK.py и запись результата в файл logs.txt
-        os.system('py test_PK.py > Results/PK_logs.txt')
+        os.system('pytest -s test_PK.py > Results/PK_logs.txt')  # команда запуска скрипта test_PK.py и запись результата в файл logs.txt
+        # os.system('py test_PK.py > Results/PK_logs.txt')
         with open('Results/PK_logs.txt', 'r', -1, 'utf-8') as fi:
             #     # f = fi.read()[262:1031] # более полный отчет о тестировании
-            f = fi.read()[221:972]  # отчет о тестировании
+            f = fi.read()[0::]  # отчет о тестировании
             opt_1 = re.sub(r'\s[.]', '\n', f)
             # opt_2 =  re.sub(r'\D[=]', ' ', opt_1) #редактирование последней строчки
         bot.send_message(message.chat.id, opt_1)  # ответ бота с выводом результата тестирования
